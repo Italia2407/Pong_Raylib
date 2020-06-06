@@ -1,50 +1,46 @@
-#include "raylib.h"
+#include "globals.h"
+#include "objects/paddle.h"
 
-#define SCREEN_WIDTH (800)
-#define SCREEN_HEIGHT (450)
+#define SCREEN_WIDTH (1280)
+#define SCREEN_HEIGHT (720)
+#define FPS_CAP (60)
 
-// Change this depending on the path of your executable relative to the assets folder
-#define ASSET_PATH "assets/"
+#define P1_DEFAULT_POS (Vector2){0.0f, 0.0f}
+#define P2_DEFAULT_POS (Vector2){72.0f, 0.0f}
 
 int main(void)
 {
-    // Initialization
-    //--------------------------------------------------------------------------------------
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Window title");
-
-    Texture2D texture = LoadTexture(ASSET_PATH"test.png");
-
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-
-    // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
-    {
-        // Update
-        //----------------------------------------------------------------------------------
-        // TODO: Update your variables here
-        //----------------------------------------------------------------------------------
-
-        // Draw
-        //----------------------------------------------------------------------------------
-        BeginDrawing();
-
-        ClearBackground(RAYWHITE);
-
-        const int texture_x = SCREEN_WIDTH / 2 - texture.width / 2;
-        const int texture_y = SCREEN_HEIGHT / 2 - texture.height / 2;
-        DrawTexture(texture, texture_x, texture_y, WHITE);
-
-        const char* text = "OMG! IT WORKS!";
-        const Vector2 text_size = MeasureTextEx(GetFontDefault(), text, 20, 1);
-        DrawText(text, SCREEN_WIDTH / 2 - text_size.x / 2, texture_y + texture.height + text_size.y + 10, 20, BLACK);
-
-        EndDrawing();
-        //----------------------------------------------------------------------------------
-    }
-
-    // De-Initialization
-    //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
-
+	// Initialisation
+	//------------------------------------------------------------------------------------------------------------------
+	InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Pong");
+	SetTargetFPS(FPS_CAP);
+	//------------------------------------------------------------------------------------------------------------------
+	
+	Paddle paddle1 = InitPaddle(P1_DEFAULT_POS, KEY_W ,KEY_S, ORANGE);
+	Paddle paddle2 = InitPaddle(P2_DEFAULT_POS, KEY_UP ,KEY_DOWN, PURPLE);
+	// Main Game Loop
+	//------------------------------------------------------------------------------------------------------------------
+	while (!WindowShouldClose())
+	{
+		// Update
+		//--------------------------------------------------------------------------------------------------------------
+		MovePaddle(&paddle1);
+		MovePaddle(&paddle2);
+		//--------------------------------------------------------------------------------------------------------------
+		
+		
+		// Rendering
+		//--------------------------------------------------------------------------------------------------------------
+		BeginDrawing();
+		
+		ClearBackground(RAYWHITE);
+		
+		DrawPaddle(paddle1);
+		DrawPaddle(paddle2);
+		
+		EndDrawing();
+		//--------------------------------------------------------------------------------------------------------------
+	}
+	//------------------------------------------------------------------------------------------------------------------
     return 0;
 }

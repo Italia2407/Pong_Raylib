@@ -26,6 +26,9 @@ typedef struct paddle
 	KeyboardKey downKey;
 } Paddle;
 
+extern const int PADDLE_WIDTH;
+extern const int PADDLE_HEIGHT;
+
 Paddle InitPaddle(Vector2 position, KeyboardKey upKey, KeyboardKey downKey, Color colour);
 
 void MovePaddle(Paddle* paddle);

@@ -5,8 +5,8 @@
 #define SCREEN_HEIGHT (720)
 #define FPS_CAP (60)
 
-#define P1_DEFAULT_POS (Vector2){0.0f, 0.0f}
-#define P2_DEFAULT_POS (Vector2){72.0f, 0.0f}
+#define P1_DEFAULT_POS (Vector2){108, (SCREEN_HEIGHT - PADDLE_HEIGHT) / 2}
+#define P2_DEFAULT_POS (Vector2){(SCREEN_WIDTH - PADDLE_WIDTH) - 108, (SCREEN_HEIGHT - PADDLE_HEIGHT) / 2}
 
 int main(void)
 {

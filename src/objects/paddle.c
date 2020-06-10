@@ -39,7 +39,7 @@ void MovePaddle(Paddle* paddle)
 	
 	// Boundary Check
 	//------------------------------------------------------------------------------------------------------------------
-	paddle->position.y = Clamp(paddle->position.y, 0.0f, GetScreenHeight() - PADDLE_HEIGHT);
+	paddle->position.y = Clamp(paddle->position.y, 0.0f, PaddleLowerBound());
 	//------------------------------------------------------------------------------------------------------------------
 }
 
@@ -51,4 +51,14 @@ void ResetPosition(Paddle* paddle, Vector2 origin)
 void DrawPaddle(Paddle paddle)
 {
 	DrawRectangleRec(paddle.boundingBox, paddle.colour);
+}
+
+int PaddleLowerBound()
+{
+	return GetScreenHeight() - PADDLE_HEIGHT;
+}
+
+int PaddleRighterBound()
+{
+	return GetScreenWidth() - PADDLE_WIDTH;
 }

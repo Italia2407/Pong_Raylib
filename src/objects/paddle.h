@@ -36,4 +36,7 @@ void ResetPosition(Paddle* paddle, Vector2 origin);
 
 void DrawPaddle(Paddle paddle);
 
+int PaddleLowerBound();
+int PaddleRighterBound();
+
 #endif //PONG_RAYLIB_PADDLE_H

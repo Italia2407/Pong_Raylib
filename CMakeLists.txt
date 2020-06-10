@@ -9,7 +9,7 @@ set(BUILD_GAMES    OFF CACHE BOOL "" FORCE) # or games
 
 add_subdirectory(libs/raylib)
 
-set(SRC_FILES src/main.c src/objects/paddle.c)
+set(SRC_FILES src/main.c src/objects/paddle.c src/globals.c)
 set(SRC_HEADERS src/objects/paddle.h src/globals.h)
 
 add_executable(pong_raylib ${SRC_HEADERS} ${SRC_FILES})

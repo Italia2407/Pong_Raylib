@@ -39,11 +39,11 @@ void MovePaddle(Paddle* paddle)
 	
 	// Boundary Check
 	//------------------------------------------------------------------------------------------------------------------
-	paddle->position.y = Clamp(paddle->position.y, 0.0f, PaddleLowerBound());
+	paddle->position.y = Clamp(paddle->position.y, UpperBound(), PaddleLowerBound());
 	//------------------------------------------------------------------------------------------------------------------
 }
 
-void ResetPosition(Paddle* paddle, Vector2 origin)
+void PaddleResetPosition(Paddle* paddle, Vector2 origin)
 {
 	paddle->position = origin;
 }
@@ -55,10 +55,10 @@ void DrawPaddle(Paddle paddle)
 
 int PaddleLowerBound()
 {
-	return GetScreenHeight() - PADDLE_HEIGHT;
+	return LowerBound() - PADDLE_HEIGHT;
 }
 
 int PaddleRighterBound()
 {
-	return GetScreenWidth() - PADDLE_WIDTH;
+	return RighterBound() - PADDLE_WIDTH;
 }

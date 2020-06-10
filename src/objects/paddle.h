@@ -32,7 +32,7 @@ extern const int PADDLE_HEIGHT;
 Paddle InitPaddle(Vector2 position, KeyboardKey upKey, KeyboardKey downKey, Color colour);
 
 void MovePaddle(Paddle* paddle);
-void ResetPosition(Paddle* paddle, Vector2 origin);
+void PaddleResetPosition(Paddle* paddle, Vector2 origin);
 
 void DrawPaddle(Paddle paddle);
 

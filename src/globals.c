@@ -9,7 +9,17 @@ int UpperBound()
 	return 0;
 }
 
+int LowerBound()
+{
+	return SCREEN_HEIGHT - 0;
+}
+
 int LefterBound()
 {
-	return 0;
+	return 72;
+}
+
+int RighterBound()
+{
+	return SCREEN_WIDTH - 72;
 }

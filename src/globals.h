@@ -18,6 +18,8 @@
 #define ASSET_PATH "../assets/"
 
 int UpperBound();
+int LowerBound();
 int LefterBound();
+int RighterBound();
 
 #endif //PONG_RAYLIB_GLOBALS_H

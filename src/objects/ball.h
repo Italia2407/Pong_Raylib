@@ -29,7 +29,7 @@ extern const int BALL_SIDE_LGTH;
 
 Ball InitBall(Vector2 position, Color colour);
 
-void MoveBall(Ball* ball);
+void UpdatePosition(Ball* ball);
 void StartBallMovement(Ball* ball);
 void BallResetPosition(Ball* ball, Vector2 origin);
 

@@ -6,6 +6,18 @@
 #define P2_DEF_POS (Vector2){PaddleRighterBound(), (PaddleLowerBound() + UpperBound()) / 2}
 #define BALL_DEF_POS (Vector2){(BallRighterBound() + LefterBound()) / 2, (BallLowerBound() + UpperBound()) / 2}
 
+void DrawBoundsDebug(Color boundColour, Color centreColour)
+{
+	DrawRectangle(0, 0, SCREEN_WIDTH, UpperBound(), boundColour);
+	DrawRectangle(0, LowerBound(), SCREEN_WIDTH, SCREEN_HEIGHT - LowerBound(), boundColour);
+	
+	DrawRectangle(0, 0, LefterBound(), SCREEN_HEIGHT, boundColour);
+	DrawRectangle(RighterBound(), 0, SCREEN_WIDTH - RighterBound(), SCREEN_HEIGHT, boundColour);
+	
+	DrawLine(0, (LowerBound() + UpperBound()) / 2, SCREEN_WIDTH, (LowerBound() + UpperBound()) / 2, centreColour);
+	DrawLine((RighterBound() + LefterBound()) / 2, 0, (RighterBound() + LefterBound()) / 2, SCREEN_HEIGHT, centreColour);
+}
+
 int main(void)
 {
 	// Initialisation
@@ -31,10 +43,8 @@ int main(void)
 			MovePaddle(&paddle1);
 			MovePaddle(&paddle2);
 			
-			MoveBall(&ball);
-		}
-		
-		if (!canMove && IsKeyPressed(KEY_ENTER))
+			UpdatePosition(&ball);
+		} else if (IsKeyPressed(KEY_ENTER))
 		{
 			canMove = true;
 			StartBallMovement(&ball);
@@ -47,6 +57,8 @@ int main(void)
 		BeginDrawing();
 		
 		ClearBackground(RAYWHITE);
+		
+		DrawBoundsDebug(BLUE, BLACK);
 		
 		DrawPaddle(paddle1);
 		DrawPaddle(paddle2);

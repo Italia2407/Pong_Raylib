@@ -21,9 +21,16 @@ Ball InitBall(Vector2 position, Color colour)
 	return newBall;
 }
 
-void MoveBall(Ball* ball)
+void UpdatePosition(Ball* ball)
 {
     ball->position = Vector2Add(ball->position, ball->velocity);
+    
+    // Checks if the ball collides with the vertical bounds
+    if (ball->position.y <= UpperBound() || ball->position.y >= BallLowerBound())
+	{
+    	ball->position.y = Clamp(ball->position.y, UpperBound(), BallLowerBound());
+    	ball->velocity.y = -(ball->velocity.y);
+	}
 }
 
 void StartBallMovement(Ball* ball)

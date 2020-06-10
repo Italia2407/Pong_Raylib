@@ -6,12 +6,12 @@
 
 int UpperBound()
 {
-	return 0;
+	return 108;
 }
 
 int LowerBound()
 {
-	return SCREEN_HEIGHT - 0;
+	return SCREEN_HEIGHT - 18;
 }
 
 int LefterBound()

@@ -3,6 +3,7 @@
 //
 
 #include "../globals.h"
+#include "paddle.h"
 
 #ifndef PONG_RAYLIB_BALL_H
 #define PONG_RAYLIB_BALL_H
@@ -32,6 +33,8 @@ Ball InitBall(Vector2 position, Color colour);
 void UpdatePosition(Ball* ball);
 void StartBallMovement(Ball* ball);
 void BallResetPosition(Ball* ball, Vector2 origin);
+
+bool CheckPaddleCollision(Paddle paddle, Ball* ball);
 
 void DrawBall(Ball ball);
 

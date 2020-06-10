@@ -6,6 +6,7 @@
 
 #define HORIZONTAL_SPEED 4.0f
 #define MAX_VERTICAL_SPEED 5.0f
+#define RANDOM_VARIATION 8.0f
 
 const int BALL_SIDE_LGTH = 24;
 
@@ -45,6 +46,23 @@ void BallResetPosition(Ball* ball, Vector2 origin)
 {
 	ball->velocity = Vector2Zero();
     ball->position = origin;
+}
+
+bool CheckPaddleCollision(Paddle paddle, Ball* ball)
+{
+	if (CheckCollisionRecs(paddle.boundingBox, ball->boundingBox))
+	{
+		float randomVariation = GetRandomValue(-RANDOM_VARIATION, RANDOM_VARIATION) / 10.0f;
+		
+		ball->position.x = Clamp(ball->position.x, LefterBound() + PADDLE_WIDTH, BallRighterBound() - PADDLE_WIDTH);
+		ball->velocity.x = -(ball->velocity.x);
+		
+		ball->velocity.y = Clamp(ball->velocity.y + randomVariation, -MAX_VERTICAL_SPEED, MAX_VERTICAL_SPEED);
+		
+		return true;
+	}
+	
+	return false;
 }
 
 void DrawBall(Ball ball)

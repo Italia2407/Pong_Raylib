@@ -34,7 +34,7 @@ void UpdatePosition(Ball* ball);
 void StartBallMovement(Ball* ball);
 void BallResetPosition(Ball* ball, Vector2 origin);
 
-bool CheckPaddleCollision(Paddle paddle, Ball* ball);
+bool ResolvePaddleCollisions(Paddle paddle1, Paddle paddle2, Ball* ball);
 
 void DrawBall(Ball ball);
 

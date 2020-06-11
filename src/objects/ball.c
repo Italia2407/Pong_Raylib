@@ -50,9 +50,19 @@ void BallResetPosition(Ball* ball, Vector2 origin)
     ball->position = origin;
 }
 
-bool CheckPaddleCollision(Paddle paddle, Ball* ball)
+bool ResolvePaddleCollisions(Paddle paddle1, Paddle paddle2, Ball* ball)
 {
-	if (CheckCollisionRecs(paddle.boundingBox, ball->boundingBox))
+	bool collided = false;
+	if (ball->velocity.x < 0)
+	{
+		collided = CheckCollisionRecs(paddle1.boundingBox, ball->boundingBox);
+		
+	} else
+	{
+		collided = CheckCollisionRecs(paddle2.boundingBox, ball->boundingBox);
+	}
+	
+	if (collided)
 	{
 		float randomVariation = GetRandomValue(-RANDOM_VARIATION_STEPS, RANDOM_VARIATION_STEPS) * RANDOM_VARIATION;
 		
@@ -63,7 +73,6 @@ bool CheckPaddleCollision(Paddle paddle, Ball* ball)
 		
 		return true;
 	}
-	
 	return false;
 }
 

@@ -11,7 +11,7 @@ int UpperBound()
 
 int LowerBound()
 {
-	return SCREEN_HEIGHT - 18;
+	return SCREEN_HEIGHT - 24;
 }
 
 int LefterBound()

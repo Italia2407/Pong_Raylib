@@ -4,6 +4,7 @@
 #include "objects/ball.h"
 
 #include "management/game-manager.h"
+#include "management/gui-manager.h"
 
 //#define DRAW_DEBUG
 
@@ -17,15 +18,17 @@ int main(void)
 	SetTargetFPS(FPS_CAP);
 	//------------------------------------------------------------------------------------------------------------------
 	
-	paddle1 = InitPaddle(P1_DEF_POS, KEY_W ,KEY_S, ORANGE);
-	paddle2 = InitPaddle(P2_DEF_POS, KEY_UP ,KEY_DOWN, PURPLE);
+	paddle1 = InitPaddle(P1_DEF_POS, KEY_W ,KEY_S, P1_COLOUR);
+	paddle2 = InitPaddle(P2_DEF_POS, KEY_UP ,KEY_DOWN, P2_COLOUR);
 	
-	ball = InitBall(BALL_DEF_POS, RED);
+	ball = InitBall(BALL_DEF_POS, BALL_COLOUR);
 	
 	P1Score = 0;
 	P2Score = 0;
 	
 	maxScore = 7;
+	P1Name = "I";
+	P2Name = "U";
 	
 	canMove = false;
 	// Main Game Loop
@@ -66,6 +69,9 @@ int main(void)
 		DrawBoundsDebug(BLUE, BLACK);
 		DrawText(TextFormat("%f", ball.velocity.y), 0, 0, 24, BLACK);
 #endif
+		
+		DrawVerticalBorders();
+		DrawScoreText();
 		
 		DrawPaddle(paddle1);
 		DrawPaddle(paddle2);

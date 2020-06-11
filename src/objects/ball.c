@@ -4,9 +4,11 @@
 
 #include "ball.h"
 
-#define HORIZONTAL_SPEED 4.0f
+#define HORIZONTAL_SPEED 6.0f
 #define MAX_VERTICAL_SPEED 5.0f
-#define RANDOM_VARIATION 8.0f
+
+#define RANDOM_VARIATION 0.1f
+#define RANDOM_VARIATION_STEPS 8
 
 const int BALL_SIDE_LGTH = 24;
 
@@ -52,7 +54,7 @@ bool CheckPaddleCollision(Paddle paddle, Ball* ball)
 {
 	if (CheckCollisionRecs(paddle.boundingBox, ball->boundingBox))
 	{
-		float randomVariation = GetRandomValue(-RANDOM_VARIATION, RANDOM_VARIATION) / 10.0f;
+		float randomVariation = GetRandomValue(-RANDOM_VARIATION_STEPS, RANDOM_VARIATION_STEPS) * RANDOM_VARIATION;
 		
 		ball->position.x = Clamp(ball->position.x, LefterBound() + PADDLE_WIDTH, BallRighterBound() - PADDLE_WIDTH);
 		ball->velocity.x = -(ball->velocity.x);

@@ -7,6 +7,8 @@
 #define P2_DEF_POS (Vector2){PaddleRighterBound(), (PaddleLowerBound() + UpperBound()) / 2}
 #define BALL_DEF_POS (Vector2){(BallRighterBound() + LefterBound()) / 2, (BallLowerBound() + UpperBound()) / 2}
 
+#define DRAW_DEBUG
+
 void DrawBoundsDebug(Color boundColour, Color centreColour);
 
 int main(void)
@@ -53,9 +55,11 @@ int main(void)
 		BeginDrawing();
 		
 		ClearBackground(RAYWHITE);
-		
+
+#ifndef DRAW_DEBUG
 		DrawBoundsDebug(BLUE, BLACK);
 		DrawText(TextFormat("%f", ball.velocity.y), 0, 0, 24, BLACK);
+#endif
 		
 		DrawPaddle(paddle1);
 		DrawPaddle(paddle2);
@@ -71,12 +75,12 @@ int main(void)
 
 void DrawBoundsDebug(Color boundColour, Color centreColour)
 {
-DrawRectangle(0, 0, SCREEN_WIDTH, UpperBound(), boundColour);
-DrawRectangle(0, LowerBound(), SCREEN_WIDTH, SCREEN_HEIGHT - LowerBound(), boundColour);
-
-DrawRectangle(0, 0, LefterBound(), SCREEN_HEIGHT, boundColour);
-DrawRectangle(RighterBound(), 0, SCREEN_WIDTH - RighterBound(), SCREEN_HEIGHT, boundColour);
-
-DrawLine(0, (LowerBound() + UpperBound()) / 2, SCREEN_WIDTH, (LowerBound() + UpperBound()) / 2, centreColour);
-DrawLine((RighterBound() + LefterBound()) / 2, 0, (RighterBound() + LefterBound()) / 2, SCREEN_HEIGHT, centreColour);
+	DrawRectangle(0, 0, SCREEN_WIDTH, UpperBound(), boundColour);
+	DrawRectangle(0, LowerBound(), SCREEN_WIDTH, SCREEN_HEIGHT - LowerBound(), boundColour);
+	
+	DrawRectangle(0, 0, LefterBound(), SCREEN_HEIGHT, boundColour);
+	DrawRectangle(RighterBound(), 0, SCREEN_WIDTH - RighterBound(), SCREEN_HEIGHT, boundColour);
+	
+	DrawLine(0, (LowerBound() + UpperBound()) / 2, SCREEN_WIDTH, (LowerBound() + UpperBound()) / 2, centreColour);
+	DrawLine((RighterBound() + LefterBound()) / 2, 0, (RighterBound() + LefterBound()) / 2, SCREEN_HEIGHT, centreColour);
 }

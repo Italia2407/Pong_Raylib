@@ -6,7 +6,7 @@
 
 int UpperBound()
 {
-	return 108;
+	return 54;
 }
 
 int LowerBound()

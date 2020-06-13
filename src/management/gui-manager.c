@@ -5,9 +5,9 @@
 #include "gui-manager.h"
 #include "game-manager.h"
 
-#define BORDER_COLOUR (Color){11, 108, 182, 255}
+#define BORDER_COLOUR (Color){219, 5, 126, 255}
 #define TEXT_COLOUR RAYWHITE
-#define WIN_COLOUR BLACK
+#define WIN_TEXT_COLOUR BLACK
 
 const char* P1Name;
 const char* P2Name;
@@ -30,7 +30,7 @@ void DrawScoreText()
 void DrawWin(bool Player2)
 {
 	if (!Player2)
-		DrawText(TextFormat("%s: WINS!!!", P1Name), (SCREEN_WIDTH/2) - 450, (SCREEN_HEIGHT/2) - 20, 72.0f, WIN_COLOUR);
+		DrawText(TextFormat("%s: WINS!!!", P1Name), (SCREEN_WIDTH/2) - 450, (SCREEN_HEIGHT/2) - 20, 72.0f, WIN_TEXT_COLOUR);
 	else
-		DrawText(TextFormat("%s: WINS!!!", P2Name), (SCREEN_WIDTH/2) - 450, (SCREEN_HEIGHT/2) - 20, 72.0f, WIN_COLOUR);
+		DrawText(TextFormat("%s: WINS!!!", P2Name), (SCREEN_WIDTH/2) - 450, (SCREEN_HEIGHT/2) - 20, 72.0f, WIN_TEXT_COLOUR);
 }

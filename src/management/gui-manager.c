@@ -5,7 +5,7 @@
 #include "gui-manager.h"
 #include "game-manager.h"
 
-#define BORDER_COLOUR (Color){11, 108, 182, 255}
+#define BORDER_COLOUR (Color){219, 5, 126, 255}
 #define TEXT_COLOUR RAYWHITE
 #define WIN_COLOUR BLACK
 

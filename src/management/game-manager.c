@@ -15,6 +15,7 @@ int P2Score;
 int maxScore;
 
 bool canMove;
+bool gameWon = false;
 
 void Start()
 {
@@ -38,14 +39,19 @@ void PaddleScored(bool rightPaddle)
 	if (!rightPaddle)
 	{
 		P1Score++;
+		gameWon = P1Score >= maxScore;
 	} else
 	{
 		P2Score++;
+		gameWon = P2Score >= maxScore;
 	}
 	
 	canMove = false;
 	
-	PaddleResetPosition(&paddle1, P1_DEF_POS);
-	PaddleResetPosition(&paddle2, P2_DEF_POS);
-	BallResetPosition(&ball, BALL_DEF_POS);
+	if (!gameWon)
+	{
+		PaddleResetPosition(&paddle1, P1_DEF_POS);
+		PaddleResetPosition(&paddle2, P2_DEF_POS);
+		BallResetPosition(&ball, BALL_DEF_POS);
+	}
 }

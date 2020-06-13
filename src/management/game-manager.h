@@ -24,6 +24,7 @@ extern int P2Score;
 extern int maxScore;
 
 extern bool canMove;
+extern bool gameWon;
 
 void Start();
 

@@ -17,4 +17,6 @@ extern const char* P2Name;
 void DrawVerticalBorders();
 void DrawScoreText();
 
+void DrawWin(bool Player2);
+
 #endif //PONG_RAYLIB_SCORE_MANAGER_H

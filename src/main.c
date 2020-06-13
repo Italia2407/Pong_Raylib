@@ -10,10 +10,37 @@
 
 void DrawBoundsDebug(Color boundColour, Color centreColour);
 
+void GetConsoleInput()
+{
+	const char* P1Buf = calloc(256, sizeof(char));
+	const char* P2Buf = calloc(256, sizeof(char));
+	
+	printf("Please enter Player-1 Name: ");
+	scanf("%s", P1Buf);
+	
+	printf("Please enter Player-2 Name: ");
+	scanf("%s", P2Buf);
+	
+	P1Name = calloc(12, sizeof(char));
+	P2Name = calloc(12, sizeof(char));
+	
+	strncpy(P1Name, P1Buf, 12);
+	strncpy(P2Name, P2Buf, 12);
+	
+	
+	printf("Please enter max score: ");
+	scanf(" %i", &maxScore);
+	
+	if (maxScore <= 0)
+		maxScore = 1;
+}
+
 int main(void)
 {
 	// Initialisation
 	//------------------------------------------------------------------------------------------------------------------
+	GetConsoleInput();
+	
 	InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Pong");
 	SetTargetFPS(FPS_CAP);
 	//------------------------------------------------------------------------------------------------------------------
@@ -26,10 +53,6 @@ int main(void)
 	P1Score = 0;
 	P2Score = 0;
 	
-	maxScore = 7;
-	P1Name = "I";
-	P2Name = "U";
-	
 	canMove = false;
 	// Main Game Loop
 	//------------------------------------------------------------------------------------------------------------------
@@ -37,25 +60,28 @@ int main(void)
 	{
 		// Update
 		//--------------------------------------------------------------------------------------------------------------
-		if (canMove)
+		if (!gameWon)
 		{
-			MovePaddle(&paddle1);
-			MovePaddle(&paddle2);
-			
-			UpdatePosition(&ball);
-			
-			ResolvePaddleCollisions(paddle1, paddle2, &ball);
-			
-			if (ball.velocity.x > 0 && CheckPaddleScored(false))
+			if (canMove)
 			{
-				PaddleScored(false);
-			} else if (CheckPaddleScored(true))
+				MovePaddle(&paddle1);
+				MovePaddle(&paddle2);
+				
+				UpdatePosition(&ball);
+				
+				ResolvePaddleCollisions(paddle1, paddle2, &ball);
+				
+				if (ball.velocity.x > 0 && CheckPaddleScored(false))
+				{
+					PaddleScored(false);
+				} else if (CheckPaddleScored(true))
+				{
+					PaddleScored(true);
+				}
+			} else if (IsKeyPressed(KEY_ENTER))
 			{
-				PaddleScored(true);
+				Start();
 			}
-		} else if (IsKeyPressed(KEY_ENTER))
-		{
-			Start();
 		}
 		//--------------------------------------------------------------------------------------------------------------
 		
@@ -77,6 +103,11 @@ int main(void)
 		DrawPaddle(paddle2);
 		
 		DrawBall(ball);
+		
+		if (gameWon)
+		{
+			DrawWin(P2Score >= maxScore);
+		}
 		
 		EndDrawing();
 		//--------------------------------------------------------------------------------------------------------------
